@@ -1,6 +1,6 @@
 # OpenVRCScaler
 
-*Yes it's vibe coded, but I've reviewed and tested it. This is free, please don't complaint about AI usage.*
+*Yes it's vibe coded, but I've reviewed and tested it. This is free, please don't complain about AI usage.*
 
 OpenVRCScaler is a Python application that enables OSC-based avatar scaling in VRChat. It reads scaling parameters from a custom scaling menu, calculates your target height, and sends time-interpolated scaling updates back to VRChat over OSC.
 
