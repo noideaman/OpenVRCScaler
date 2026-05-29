@@ -17,10 +17,10 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            artifact-name: VRChatAvatarScaler
+            artifact-name: OpenVRCScaler
             output-ext: ".AppImage"
           - os: windows-latest
-            artifact-name: VRChatAvatarScaler
+            artifact-name: OpenVRCScaler
             output-ext: ".msi"
 
     runs-on: ${{ matrix.os }}
