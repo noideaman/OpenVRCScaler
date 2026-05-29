@@ -77,7 +77,7 @@ jobs:
         if: runner.os == 'Windows'
         shell: cmd
         run: |
-          python -m pyinstaller ^
+          pyinstaller ^
           --noconfirm ^
           --onefile ^
           --windowed ^
@@ -90,7 +90,7 @@ jobs:
         if: runner.os == 'Windows'
         shell: cmd
         run: |
-          python -m nuitka ^
+          nuitka ^
           --windows-console-mode=disable ^
           --windows-icon-from-ico=open_vrc_scaler_icon.ico ^
           --output-filename=OpenVRCScaler-nuitka.exe ^
