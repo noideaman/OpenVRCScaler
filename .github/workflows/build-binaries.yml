@@ -91,9 +91,11 @@ jobs:
         shell: cmd
         run: |
           nuitka ^
+          --assume-yes-for-downloads ^
           --windows-console-mode=disable ^
           --windows-icon-from-ico=open_vrc_scaler_icon.ico ^
           --output-filename=OpenVRCScaler-nuitka.exe ^
+          --enable-plugin=tk-inter ^
           --mode=onefile ^
           open_vrc_scaler.py
 
