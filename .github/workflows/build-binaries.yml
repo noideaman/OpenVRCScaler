@@ -112,7 +112,7 @@ jobs:
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v6
         with:
-          name: ${{ matrix.artifact-name }}
+          name: ${{ matrix.artifact-name }}-pyinstaller
           path: dist/OpenVRCScaler-pyinstaller.exe
           retention-days: 30
 
