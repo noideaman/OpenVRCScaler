@@ -81,7 +81,7 @@ jobs:
           --noconfirm ^
           --onefile ^
           --windowed ^
-          --name OpenVRCScaler.exe ^
+          --name OpenVRCScaler-pyinstaller.exe ^
           --icon "open_vrc_scaler_icon.ico" ^
           "open_vrc_scaler.py"
 
@@ -96,6 +96,7 @@ jobs:
           --windows-icon-from-ico=open_vrc_scaler_icon.ico ^
           --output-filename=OpenVRCScaler-nuitka.exe ^
           --enable-plugin=tk-inter ^
+          --output-dir=dist ^
           --mode=onefile ^
           open_vrc_scaler.py
 
@@ -112,7 +113,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.artifact-name }}
-          path: dist/OpenVRCScaler.exe
+          path: dist/OpenVRCScaler-pyinstaller.exe
           retention-days: 30
 
       - name: Upload Nuitka artifact (Windows)
@@ -132,7 +133,7 @@ jobs:
         if: runner.os == 'Windows'
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/OpenVRCScaler.exe
+          files: dist/OpenVRCScaler-pyinstaller.exe
 
       - name: Upload Nuitka build to Release (Windows)
         if: runner.os == 'Windows'
