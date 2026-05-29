@@ -40,7 +40,7 @@ jobs:
         shell: pwsh
         run: |
           pip install -r requirements.txt
-          pip install cx_Freeze freeze-core
+          pip install cx_Freeze freeze-core Nuitka pyinstaller
 
       - name: Install dependencies (Linux)
         if: runner.os == 'Linux'
@@ -56,7 +56,7 @@ jobs:
         #  Xvfb :99 -screen 0 1024x768x24 &
         #  echo "DISPLAY=:99" >> $GITHUB_ENV
 
-      # --- Build ---
+      # --- Build CX_Freeze ---
       - name: Build with CX_Freeze (Linux)
         if: runner.os == 'Linux'
         ##needed if systray icon is added
@@ -71,6 +71,32 @@ jobs:
         run: |
           python setup.py bdist_msi
 
+      # --- Build pyinstaller ---
+
+      - name: Build with pyinstaller (Windows)
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: |
+          python -m pyinstaller ^
+          --noconfirm ^
+          --onefile ^
+          --windowed ^
+          --name OpenVRCScaler.exe ^
+          --icon "open_vrc_scaler_icon.ico" ^
+          "open_vrc_scaler.py"
+
+      # --- Build Nuitka ---
+      - name: Build with Nuitka (Windows)
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: |
+          python -m nuitka ^
+          --windows-console-mode=disable ^
+          --windows-icon-from-ico=open_vrc_scaler_icon.ico ^
+          --output-filename=OpenVRCScaler-nuitka.exe ^
+          --mode=onefile ^
+          open_vrc_scaler.py
+
       # --- Upload ---
       - name: Upload binary
         uses: actions/upload-artifact@v6
@@ -79,7 +105,35 @@ jobs:
           path: dist/OpenVRCScaler${{ matrix.output-ext }}
           retention-days: 30
 
+      - name: Upload PyInstaller artifact (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v6
+        with:
+          name: ${{ matrix.artifact-name }}
+          path: dist/OpenVRCScaler.exe
+          retention-days: 30
+
+      - name: Upload Nuitka artifact (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v6
+        with:
+          name: ${{ matrix.artifact-name }}-nuitka
+          path: dist/OpenVRCScaler-nuitka.exe
+          retention-days: 30
+
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
           files: dist/OpenVRCScaler${{ matrix.output-ext }}
+
+      - name: Upload PyInstaller build to Release (Windows)
+        if: runner.os == 'Windows'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/OpenVRCScaler.exe
+
+      - name: Upload Nuitka build to Release (Windows)
+        if: runner.os == 'Windows'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/OpenVRCScaler-nuitka.exe
