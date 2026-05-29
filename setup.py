@@ -1,15 +1,15 @@
 import sys
 import subprocess
 from cx_Freeze import setup, Executable
-
+#stuff if using pystray
 #force pysystray without a desktop
-pystray_path = subprocess.check_output(
-    [sys.executable, '-c', 
-     'import importlib.util; import os; '
-     'spec = importlib.util.find_spec("pystray"); '
-     'print(os.path.dirname(spec.origin))'],
-    text=True
-).strip()
+#pystray_path = subprocess.check_output(
+#    [sys.executable, '-c', 
+#     'import importlib.util; import os; '
+#     'spec = importlib.util.find_spec("pystray"); '
+#     'print(os.path.dirname(spec.origin))'],
+#    text=True
+#).strip()
 
 # Dependencies are automatically detected, but it might need
 # fine tuning.
