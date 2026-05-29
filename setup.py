@@ -36,11 +36,11 @@ msi_data = {
         ("IconId", "open_vrc_scaler_icon.ico"),
     ],
     "Shortcut": [
-        ("DesktopShortcut", "DesktopFolder", "VRChat Avatar Scaler",
-         "TARGETDIR", "[TARGETDIR]OpenVRCScaler.exe",
+        ("DesktopShortcut", "DesktopFolder", "OpenVRCScaler",
+         "TARGETDIR", "[TARGETDIR]open_vrc_scaler.exe",
          None, None, None, None, None, None, "TARGETDIR"),
-        ("StartMenuShortcut", "MyProgramMenu", "VRChat Avatar Scaler",
-         "TARGETDIR", "[TARGETDIR]OpenVRCScaler.exe",
+        ("StartMenuShortcut", "MyProgramMenu", "OpenVRCScaler",
+         "TARGETDIR", "[TARGETDIR]open_vrc_scaler.exe",
          None, None, None, None, None, None, "TARGETDIR"),
     ],
 }
